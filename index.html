@@ -2,33 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>2048 Game</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-       
-    </style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body class="bg-[#faf8ef] min-h-screen font-sans">
-    <div class="container mx-auto py-10">
+    <div class="container mx-auto py-4">
         <div class="game-container">
-            <div class="flex justify-between items-center mb-5">
-                <h1 class="text-6xl font-bold text-[#776e65]">2048</h1>
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
+                <h1 class="text-5xl font-bold text-[#776e65]">2048</h1>
                 <div class="flex gap-4">
                     <div class="score-container">
                         <div class="score-title">Score</div>
                         <div id="score" class="score-value">0</div>
                     </div>
-                    <button id="new-game" class="bg-[#8f7a66] text-white px-6 py-3 rounded font-bold hover:bg-[#9f8b77] transition">
-                        New Game
-                    </button>
+                    <div class="score-container">
+                        <div class="score-title">Best</div>
+                        <div id="high-score" class="score-value">0</div>
+                    </div>
                 </div>
             </div>
             
-            <p class="text-[#776e65] mb-5 text-lg">
-                Join the numbers and get to the <strong>2048 tile!</strong><br>
-                Use <strong>arrow keys</strong> to move the tiles.
+            <p class="text-[#776e65] mb-4 text-base text-center">
+                Join numbers to reach the <strong>2048 tile!</strong><br>
+                <strong>Swipe</strong> to move tiles.
             </p>
             
             <div class="grid" id="grid">
@@ -53,9 +52,6 @@
                 <!-- Game over overlay -->
                 <div id="game-over" class="game-over hidden">
                     <div class="game-over-text">Game Over!</div>
-                    <button id="try-again" class="bg-[#8f7a66] text-white px-6 py-3 rounded font-bold hover:bg-[#9f8b77] transition">
-                        Try Again
-                    </button>
                 </div>
             </div>
         </div>
