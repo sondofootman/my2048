@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>2048 Game</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .game-container {
-      max-width: 450px;
+      max-width: 90%;
       width: 100%;
       margin: 0 auto;
     }
@@ -31,12 +31,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 45px;
+      font-size: 5vw;
       font-weight: bold;
       transition: top 0.1s, left 0.1s;
       z-index: 10;
-      width: 100px;
-      height: 100px;
+      width: 20vw;
+      height: 20vw;
     }
     .tile-2 { background-color: #eee4da; color: #776e65; }
     .tile-4 { background-color: #ede0c8; color: #776e65; }
@@ -58,7 +58,8 @@
       border-radius: 6px;
     }
     .game-over-text {
-      font-size: 60px; font-weight: bold; color: #776e65;
+      font-size: 10vw; /* Larger text for mobile */
+      font-weight: bold; color: #776e65;
       margin-bottom: 30px;
     }
     .new-tile {
@@ -135,9 +136,9 @@
         gameOverElement.classList.add("hidden");
       }
       if (window.Telegram.WebApp) {
-  Telegram.WebApp.expand();
-  Telegram.WebApp.ready();
-}
+        Telegram.WebApp.expand();
+        Telegram.WebApp.ready();
+      }
 
       function renderGrid() {
         document.querySelectorAll(".tile").forEach(tile => tile.remove());
@@ -221,52 +222,37 @@
                 break;
               } else break;
             }
-            row -= dr === 0 ? 0 : dr < 0 ? -1 : 1;
-            col -= dc === 0 ? 0 : dc < 0 ? -1 : 1;
-          }
-        };
-
-        // Copy original grid
-        for (let r = 0; r < GRID_SIZE; r++) {
-          for (let c = 0; c < GRID_SIZE; c++) {
-            newGrid[r][c] = grid[r][c];
           }
         }
 
-        if (direction === "up") for (let c = 0; c < GRID_SIZE; c++) loop(1, c, -1, 0);
-        if (direction === "down") for (let c = 0; c < GRID_SIZE; c++) loop(GRID_SIZE - 2, c, 1, 0);
-        if (direction === "left") for (let r = 0; r < GRID_SIZE; r++) loop(r, 1, 0, -1);
-        if (direction === "right") for (let r = 0; r < GRID_SIZE; r++) loop(r, GRID_SIZE - 2, 0, 1);
+        for (let row = 0; row < GRID_SIZE; row++) {
+          for (let col = 0; col < GRID_SIZE; col++) {
+            loop(row, col, 1, 0);  // Loop right
+            loop(row, col, 0, 1);  // Loop down
+          }
+        }
 
         if (moved) {
-          grid = newGrid;
           addRandomTile();
-          updateScore();
           renderGrid();
-          if (checkWin()) alert("🎉 You win!");
-          if (checkGameOver()) {
+          if (checkWin()) {
+            alert("You win!");
+          } else if (checkGameOver()) {
             gameOver = true;
             gameOverElement.classList.remove("hidden");
           }
         }
       }
 
-      document.addEventListener("keydown", e => {
-        if (e.key === "ArrowUp") moveTiles("up");
-        if (e.key === "ArrowDown") moveTiles("down");
-        if (e.key === "ArrowLeft") moveTiles("left");
-        if (e.key === "ArrowRight") moveTiles("right");
-      });
+      // Initialize game
+      initGame();
 
-      newGameButton.addEventListener("click", initGame);
-      tryAgainButton.addEventListener("click", initGame);
-
-      // Touch support
-      let startX, startY;
+      // Event listeners for swipe gestures
       gridElement.addEventListener("touchstart", e => {
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
       });
+
       gridElement.addEventListener("touchend", e => {
         const dx = e.changedTouches[0].clientX - startX;
         const dy = e.changedTouches[0].clientY - startY;
@@ -279,7 +265,9 @@
         }
       });
 
-      initGame();
+      // Button listeners
+      newGameButton.addEventListener("click", initGame);
+      tryAgainButton.addEventListener("click", initGame);
     });
   </script>
 </body>
