@@ -91,7 +91,7 @@
 
       <p class="text-[#776e65] mb-5 text-lg">
         Join the numbers and get to the <strong>2048 tile!</strong><br/>
-        Use <strong>arrow keys</strong> to move tiles.
+        Use <strong>swipe gestures</strong> to move tiles.
       </p>
 
       <div class="grid" id="grid">
@@ -134,10 +134,6 @@
         addRandomTile();
         addRandomTile();
         gameOverElement.classList.add("hidden");
-      }
-      if (window.Telegram.WebApp) {
-        Telegram.WebApp.expand();
-        Telegram.WebApp.ready();
       }
 
       function renderGrid() {
@@ -248,18 +244,32 @@
       initGame();
 
       // Event listeners for swipe gestures
-      gridElement.addEventListener("touchstart", e => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
+      let startX = 0;
+      let startY = 0;
+      let endX = 0;
+      let endY = 0;
+
+      window.addEventListener("touchstart", (e) => {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
       });
 
-      gridElement.addEventListener("touchend", e => {
-        const dx = e.changedTouches[0].clientX - startX;
-        const dy = e.changedTouches[0].clientY - startY;
+      window.addEventListener("touchend", (e) => {
+        const touch = e.changedTouches[0];
+        endX = touch.clientX;
+        endY = touch.clientY;
+
+        const dx = endX - startX;
+        const dy = endY - startY;
+
+        // If swipe is horizontal
         if (Math.abs(dx) > Math.abs(dy)) {
           if (dx > 50) moveTiles("right");
           else if (dx < -50) moveTiles("left");
-        } else {
+        }
+        // If swipe is vertical
+        else {
           if (dy > 50) moveTiles("down");
           else if (dy < -50) moveTiles("up");
         }
