@@ -10,44 +10,44 @@
     body {
       margin: 0;
       padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-      overscroll-behavior: none; /* Prevent pull-to-refresh */
-      touch-action: manipulation; /* Improve touch responsiveness */
+      overscroll-behavior: none;
+      touch-action: manipulation;
     }
     .game-container {
       max-width: 100%;
       width: 100%;
-      padding: 10px;
+      padding: 9px; /* Reduced from 10px by 10% */
       box-sizing: border-box;
     }
     .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-gap: 4vw;
-      padding: 4vw;
+      grid-gap: 3.6vw; /* Reduced from 4vw by 10% */
+      padding: 3.6vw; /* Reduced from 4vw by 10% */
       background-color: #bbada0;
-      border-radius: 6px;
+      border-radius: 5.4px; /* Reduced from 6px by 10% */
       position: relative;
       touch-action: none;
-      width: calc(100% - 8vw);
+      width: calc(100% - 7.2vw); /* Reduced from 8vw by 10% */
       margin: 0 auto;
     }
     .cell {
       background-color: rgba(238, 228, 218, 0.35);
-      border-radius: 3px;
+      border-radius: 2.7px; /* Reduced from 3px by 10% */
       aspect-ratio: 1;
     }
     .tile {
       position: absolute;
-      border-radius: 3px;
+      border-radius: 2.7px; /* Reduced from 3px by 10% */
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: clamp(12px, 4vw, 16px);
+      font-size: clamp(10.8px, 3.6vw, 14.4px); /* Reduced from clamp(12px, 4vw, 16px) by 10% */
       font-weight: bold;
       transition: top 0.1s, left 0.1s;
       z-index: 10;
-      width: calc((100% - 12vw) / 4);
-      height: calc((100% - 12vw) / 4);
+      width: calc((100% - 10.8vw) / 4); /* Reduced from 12vw by 10% */
+      height: calc((100% - 10.8vw) / 4); /* Reduced from 12vw by 10% */
       box-sizing: border-box;
     }
     .tile-2 { background-color: #eee4da; color: #776e65; }
@@ -56,11 +56,11 @@
     .tile-16 { background-color: #f59563; color: #f9f6f2; }
     .tile-32 { background-color: #f67c5f; color: #f9f6f2; }
     .tile-64 { background-color: #f65e3b; color: #f9f6f2; }
-    .tile-128 { background-color: #edcf72; color: #f9f6f2; font-size: clamp(10px, 3.5vw, 14px); }
-    .tile-256 { background-color: #edcc61; color: #f9f6f2; font-size: clamp(10px, 3.5vw, 14px); }
-    .tile-512 { background-color: #edc850; color: #f9f6f2; font-size: clamp(10px, 3.5vw, 14px); }
-    .tile-1024 { background-color: #edc53f; color: #f9f6f2; font-size: clamp(8px, 3vw, 12px); }
-    .tile  .tile-2048 { background-color: #edc22e; color: #f9f6f2; font-size: clamp(8px, 3vw, 12px); }
+    .tile-128 { background-color: #edcf72; color: #f9f6f2; font-size: clamp(9px, 3.15vw, 12.6px); } /* Reduced by 10% */
+    .tile-256 { background-color: #edcc61; color: #f9f6f2; font-size: clamp(9px, 3.15vw, 12.6px); } /* Reduced by 10% */
+    .tile-512 { background-color: #edc850; color: #f9f6f2; font-size: clamp(9px, 3.15vw, 12.6px); } /* Reduced by 10% */
+    .tile-1024 { background-color: #edc53f; color: #f9f6f2; font-size: clamp(7.2px, 2.7vw, 10.8px); } /* Reduced by 10% */
+    .tile-2048 { background-color: #edc22e; color: #f9f6f2; font-size: clamp(7.2px, 2.7vw, 10.8px); } /* Reduced by 10% */
     .game-over {
       position: absolute;
       top: 0;
@@ -73,13 +73,13 @@
       justify-content: center;
       align-items: center;
       z-index: 100;
-      border-radius: 6px;
+      border-radius: 5.4px; /* Reduced from 6px by 10% */
     }
     .game-over-text {
-      font-size: clamp(16px, 6vw, 24px);
+      font-size: clamp(14.4px, 5.4vw, 21.6px); /* Reduced from clamp(16px, 6vw, 24px) by 10% */
       font-weight: bold;
       color: #776e65;
-      margin-bottom: 20px;
+      margin-bottom: 18px; /* Reduced from 20px by 10% */
     }
     .new-tile {
       animation: appear 0.2s;
@@ -88,24 +88,42 @@
       0% { opacity: 0; transform: scale(0); }
       100% { opacity: 1; transform: scale(1); }
     }
+    /* Consolidated and scaled custom styles */
+    .score-container {
+      background-color: #bbada0;
+      color: white;
+      padding: 13.5px 22.5px; /* Reduced from 15px 25px by 10% */
+      border-radius: 5.4px; /* Reduced from 6px by 10% */
+      text-align: center;
+      margin-bottom: 18px; /* Reduced from 20px by 10% */
+    }
+    .score-title {
+      font-size: 14.4px; /* Reduced from 16px by 10% */
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .score-value {
+      font-size: 27px; /* Reduced from 30px by 10% */
+      font-weight: bold;
+    }
   </style>
 </head>
 <body class="bg-[#faf8ef] font-sans">
   <div class="game-container">
-    <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
-      <h1 class="text-4xl sm:text-5xl font-bold text-[#776e65]">2048</h1>
-      <div class="flex gap-4 flex-wrap justify-center">
-        <div class="score-container bg-[#bbada0] text-white px-4 py-2 rounded text-center">
-          <div class="text-xs uppercase font-bold">Score</div>
-          <div id="score" class="text-lg font-bold">0</div>
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-3.6 gap-3.6"> <!-- Reduced from mb-4, gap-4 by 10% -->
+      <h1 class="text-3xl sm:text-4xl font-bold text-[#776e65]">2048</h1> <!-- Reduced from text-4xl sm:text-5xl by ~10% -->
+      <div class="flex gap-3.6 flex-wrap justify-center"> <!-- Reduced from gap-4 by 10% -->
+        <div class="score-container text-white px-3.6 py-1.8 rounded text-center"> <!-- Reduced from px-4 py-2 by 10% -->
+          <div class="text-[10.8px] uppercase font-bold">Score</div> <!-- Reduced from text-xs (~12px) by 10% -->
+          <div id="score" class="text-base font-bold">0</div> <!-- Reduced from text-lg (~18px) to text-base (~16px) -->
         </div>
-        <div class="score-container bg-[#bbada0] text-white px-4 py-2 rounded text-center">
-          <div class="text-xs uppercase font-bold">Best</div>
-          <div id="high-score" class="text-lg font-bold">0</div>
+        <div class="score-container text-white px-3.6 py-1.8 rounded text-center"> <!-- Reduced from px-4 py-2 by 10% -->
+          <div class="text-[10.8px] uppercase font-bold">Best</div> <!-- Reduced from text-xs by 10% -->
+          <div id="high-score" class="text-base font-bold">0</div> <!-- Reduced from text-lg to text-base -->
         </div>
       </div>
     </div>
-    <p class="text-[#776e65] mb-4 text-sm sm:text-base text-center">
+    <p class="text-[#776e65] mb-3.6 text-xs sm:text-sm text-center"> <!-- Reduced from mb-4, text-sm sm:text-base by 10% -->
       Join numbers to reach the <strong>2048 tile!</strong><br/>
       <strong>Swipe</strong> to move tiles.
     </p>
@@ -154,7 +172,7 @@
       function renderGrid() {
         document.querySelectorAll(".tile").forEach(tile => tile.remove());
         const gridWidth = gridElement.offsetWidth;
-        const tileSize = (gridWidth - 12 * (GRID_SIZE - 1)) / GRID_SIZE;
+        const tileSize = (gridWidth - 10.8 * (GRID_SIZE - 1)) / GRID_SIZE; /* Reduced from 12 by 10% */
         for (let row = 0; row < GRID_SIZE; row++) {
           for (let col = 0; col < GRID_SIZE; col++) {
             const value = grid[row][col];
@@ -162,8 +180,8 @@
               const tile = document.createElement("div");
               tile.className = `tile tile-${value} new-tile`;
               tile.textContent = value;
-              tile.style.top = `${4 + row * (tileSize + 4)}px`;
-              tile.style.left = `${4 + col * (tileSize + 4)}px`;
+              tile.style.top = `${3.6 + row * (tileSize + 3.6)}px`; /* Reduced from 4 by 10% */
+              tile.style.left = `${3.6 + col * (tileSize + 3.6)}px`; /* Reduced from 4 by 10% */
               gridElement.appendChild(tile);
               setTimeout(() => tile.classList.remove("new-tile"), 200);
             }
